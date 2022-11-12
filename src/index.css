@@ -21,17 +21,21 @@
 
 body {
   background-color: var(--bg-clr);
+  overflow-x: hidden;
 }
 
 .App {
   width: 100vw;
-  height: 100vh;
+  height: 100vh;  
+  padding: 80px;
+}
+
+.App, .start-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 80px;
-  overflow-x: hidden;  
+  flex-direction: column;
 }
 
 h1, h2 {
@@ -80,13 +84,6 @@ button:hover {
   transition: transform ease .3s;
 }
 
-.start-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .button-start, .button-check {
   width: 193px;
   height: 52px;
@@ -97,7 +94,7 @@ button:hover {
 }
 
 .blob {
-  position: absolute;
+  position: fixed;
   z-index: -1;
 }
 
@@ -113,9 +110,17 @@ button:hover {
 }
 
 .questions {
+  width: 100vw;
   display: flex;  
   flex-direction: column;
   justify-content: center; 
+  align-content: center;
+  padding: 80px;
+  flex-wrap: wrap;
+}
+
+.question-container {
+  max-width: 700px;
 }
 
 .options {
