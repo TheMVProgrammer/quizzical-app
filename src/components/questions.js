@@ -1,11 +1,66 @@
-import UpBlob from "../img/up-blob.svg"
-import DownBlob2 from "../img/down-blob-2.svg"
+/* eslint-disable no-lone-blocks */
+import UpBlob from "../img/up-blob.svg";
+import DownBlob2 from "../img/down-blob-2.svg";
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import createMarkup from 'create-markup'; //Some questions from the api have name codes and decimal codes instead of the string
 
 export default function Questions() {
+
+    const [questions, setQuestions] = useState([]);
+    
+    useEffect(() => {
+        fetch("https://opentdb.com/api.php?amount=5")
+            .then(res => res.json())
+            .then(data => setQuestions(data.results));
+    }, []);
+    const allQuestions = questions.map(item => {
+        return (
+            <Question
+            key = {uuidv4()}
+            question = {item.question}
+            correctAnswer = {item.correct_answer}
+            incorrectAnswers = {item.incorrect_answers}
+        />
+        )
+    })
+
   return (
     <div className="questions">
         <img src={UpBlob} alt="upper blob" className="up-blob blob"/>
+        {allQuestions}   
+        <button className="button-check">Check answers</button>         
+        <img src={DownBlob2} alt="lower blob" className="down-blob blob"/>
+    </div>
+  )
+}
+
+function Question(props) {
+    const allAnswers = props.incorrectAnswers.map(answer => {
+        return (
+            <div key={uuidv4()} className="answer" dangerouslySetInnerHTML={createMarkup(answer)} />
+        )
+    });
+
+    //Random number between 0 - 2
+    const correctAnswerIndexPosition = Math.floor(Math.random() * 3) 
+    
+    //Inserting correct answer at random index position
+    allAnswers.splice(correctAnswerIndexPosition, 0, <div key={uuidv4()} className="answer selected" dangerouslySetInnerHTML={createMarkup(props.correctAnswer)}/>)
+
+
+    return (
         <div className="question-container">
+            <h2 className="question" dangerouslySetInnerHTML={createMarkup(props.question)}/>
+            <div className="options">
+                {allAnswers}
+            </div>
+        </div>
+        
+    )    
+}
+
+{/* <div className="question-container">
             <h2 className="question">How would one say goodbye in Spanish?</h2>
             <div className="options">
                 <div className="answer answer-1 selected">Adiós</div>
@@ -50,8 +105,4 @@ export default function Questions() {
                 <div className="answer answer-4">Four</div>
             </div>
         </div>
-        <button className="button-check">Check answers</button>
-        <img src={DownBlob2} alt="lower blob" className="down-blob blob"/>
-    </div>
-  )
-}
+        <button className="button-check">Check answers</button>  */}
