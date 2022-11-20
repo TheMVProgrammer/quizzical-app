@@ -22,12 +22,13 @@
 body {
   background-color: var(--bg-clr);
   overflow-x: hidden;
+
 }
 
 .App {
   width: 100vw;
   height: 100vh;  
-  padding: 80px;
+  padding: 40px;
 }
 
 .App, .start-container {
@@ -38,7 +39,7 @@ body {
   flex-direction: column;
 }
 
-h1, h2 {
+h1, h2, .custom-label, .custom-select, footer {
   font-family: 'Karla', sans-serif;
   color: var(--font-clr-1);
 }
@@ -65,7 +66,46 @@ p {
   text-align: center;
   color: var(--font-clr-1);
   padding-bottom: 30px;
+  max-width: 600px;
 }
+
+/* Game options */
+/* .quiz-options-container {
+
+} */
+
+.select-container {
+  margin-bottom: 1.1em;
+  max-width: 350px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.custom-select {
+  padding: 10px;
+  border: none;
+  outline: none;
+	font-size: 1.6rem;
+	width: 100%;
+	border-radius: 0.25em;
+	box-shadow: 0 0 0.6em 0 rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+}
+
+.custom-label {
+	font-size: 2rem;
+	font-weight: 700;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-right: 1em;
+	width: 200px;
+}
+
+option {
+  font-size: 1.6rem;
+}
+/* Game options - end*/
 
 button {
   background-color: var(--bg-btn-clr);
@@ -76,7 +116,6 @@ button {
   border: none;
   border-radius: 15px;
   cursor: pointer;
-  align-self: center;
 }
 
 button:hover {
@@ -152,3 +191,21 @@ button:hover {
   border: none;
   background-color: var(--bg-clr-option-blue);
 }
+
+/* footer */
+ footer {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 25px;
+  display: flex;
+ }
+
+ small {
+  font-size: 1.6rem;
+ }
+
+ span {
+  color: rgb(183, 9, 9);
+  font-size: 1.6rem;
+ }
+/* footer - end */
