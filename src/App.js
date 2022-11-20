@@ -39,28 +39,25 @@ const App = () => {
 
           {
             gameStart
-            ?
-            <section className="quiz-container">
-              <QuestionList
-                gameOptions={quizOptions}
-                handleGameStart={handleGameStart}
-                handleQuestionsNotFound={handleQuestionsNotFound}
-              />
-            </section>
-
+            ?            
+            (showQuestionsError ? 
+              <h2 className="error-message">
+                Sorry, we couldn't find any questions with these options.
+              </h2>
             :
+              <section className="quiz-container">
+                <QuestionList
+                  gameOptions={quizOptions}
+                  handleGameStart={handleGameStart}
+                  handleQuestionsNotFound={handleQuestionsNotFound}
+                />
+              </section>)
+            :            
 
             <section className= "start-container">
             <h1 className="start-title">Quizzical</h1>
             <p className="start-desc">Quizzical combines fun and learning. Your general knowledge will be tested regarding a variety of categories. Enjoy!</p>
           
-            {
-              showQuestionsError && 
-              <h2 className="error-message">
-                Sorry, we couldn't find any questions with these options.
-              </h2>
-            }
-
             <div className="quiz-options-container">
               <div className="select-container">
                 <label 
