@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { decode } from "html-entities";
+import Tick from "../../assets/img/tick.png"
+import Cross from "../../assets/img/cross.png"
 
 const Question = props => {
     const incorrectAnswersElements = props.incorrectAnswers.map(answer => {
@@ -47,11 +49,18 @@ const Question = props => {
             </h3>
             <div className="answers-row">
                 { allAnswersElements }
+
+                {
+                props.showAnswer && (
+                    props.selectedAnswer === props.correctAnswer
+                    ?
+                    <img src={Tick} width={35} height={35} alt="correct answer checked" />
+                    :
+                    <img src={Cross} width={35} height={35} alt="incorrect answer checked" />
+                )
+            }
             </div>
             
-            {/* {
-                here he puts some tick s and crosses
-            } */}
         </div>
     </article>
   )
